@@ -4,6 +4,8 @@ require 'sinatra'
 require 'haml'
 
 root = File.dirname __FILE__
+set :root, root
+set :public, File.join(root, 'public')
 $: << File.join(root, 'lib')
 require 'command'
 
@@ -19,6 +21,11 @@ post '/run/' do
 	#:ok
 end
 
-post '/kill/:id' do
+get '/kill/:id' do
 	Command.kill params[:id]
+end
+
+get '/list/' do
+	@commands = Command.list
+	haml :list
 end
