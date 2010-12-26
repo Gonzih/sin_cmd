@@ -9,13 +9,14 @@ class Command < Hasher
 		@command = command
 		@id = hash
 		@@commands[@id] = self
-		@output = `#{@@prefix}#{@id} #{@command}`
+		@pid = fork { exec @command }
 
 		self
 	end
 
-	def kill
-		`screen -X -S #{@id} quit`
+	def kill message = 'TERM'
+		Process.kill message, @pid
+		Process.wait @pid
 		true
 	end
 
