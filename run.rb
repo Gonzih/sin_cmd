@@ -9,6 +9,8 @@ set :public, File.join(root, 'public')
 $: << File.join(root, 'lib')
 require 'command'
 
+set :port, 4444
+
 root = File.dirname __FILE__
 set :views, File.join(root, 'views')
 
