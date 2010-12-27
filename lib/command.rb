@@ -1,6 +1,6 @@
-require 'hasher'
+require 'digest/md5'
 
-class Command < Hasher
+class Command
 	@@prefix = 'screen -d -m -S '
 	@@commands = {}
 	attr_reader :id, :command
@@ -25,7 +25,7 @@ class Command < Hasher
 	end
 
 	def hash
-		@hash ||= super
+		@hash ||= Digest::MD5.hexdigest(@command + Command.list.length.to_s)
 	end
 
 	def self.kill id

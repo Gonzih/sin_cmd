@@ -12,6 +12,10 @@ require 'command'
 root = File.dirname __FILE__
 set :views, File.join(root, 'views')
 
+before '/*' do
+	@commands = Command.list unless params[:cmd]
+end
+
 get '/' do
 	haml :index
 end
@@ -26,6 +30,5 @@ get '/kill/:id' do
 end
 
 get '/list/' do
-	@commands = Command.list
-	haml :list
+	haml :list, :locals => { :commands => @commands }, :layout => false
 end
