@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $('#main_form').submit(function(){
+    loader();
     $.ajax({
       url: $(this).attr('action'),
       data: $(this).serialize(),
@@ -17,13 +18,13 @@ $(document).ready(function(){
 });
 
 function load_list() {
-    $('#list').hide();
     $.ajax({
         url: '/list/',
         type: 'post',
         success: function(data){
             $('#list').html(data);
-            $('#list').show('fast');
+            $('#list *').hide();
+            $('#list *').fadeIn('slow');
             init_killers();
         }
     })
@@ -31,6 +32,7 @@ function load_list() {
 
 function init_killers() {
     $('.killer').click(function(){
+    loader();
     $.ajax({
       url: $(this).attr('href'),
       type: 'post',
@@ -42,4 +44,8 @@ function init_killers() {
     })
     return false;
   });
+}
+
+function loader() {
+    $('#list').html('<center><img src="/images/loader.gif" /></center>');
 }
