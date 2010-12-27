@@ -17,11 +17,13 @@ $(document).ready(function(){
 });
 
 function load_list() {
+    $('#list').hide();
     $.ajax({
         url: '/list/',
         type: 'post',
         success: function(data){
             $('#list').html(data);
+            $('#list').show('fast');
             init_killers();
         }
     })

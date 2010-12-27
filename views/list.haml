@@ -2,3 +2,5 @@
   - if cmd && cmd[1]
     .list_item
       %a{:href => cmd[1].url, :class => :killer}= cmd[1].command
+- unless commands.count > 0
+  %center No processes found 
