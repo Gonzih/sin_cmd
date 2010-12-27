@@ -29,21 +29,21 @@ end
 
 
 get '/' do
-	haml :index
+  haml :index
 end
 
 post '/run/?' do
-	Command.new params[:cmd]
+  Command.new params[:cmd]
 
-	'ok'
+  'ok'
 end
 
 post '/kill/:id/?' do
-	Command.kill params[:id]
+  Command.kill params[:id]
   
   'ok'
 end
 
 post '/list/?' do
-	haml :list, :locals => { :commands => @commands }, :layout => false
+  haml :list, :locals => { :commands => @commands }, :layout => false
 end
