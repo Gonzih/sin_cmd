@@ -1,0 +1,23 @@
+* {
+  border: 1px solid black;
+}
+body {
+  height: 95%;
+  width: 99%;
+}
+#cmd_form {
+  float: left;
+}
+#list { 
+  float: right;
+  margin-right: 2%;
+  margin-top: 2%;
+  text-align: left;
+  width: 40%;
+}
+#list div {
+  clear: both;
+  float: left;
+  margin-bottom: 5px;
+  width: 100%;
+}
