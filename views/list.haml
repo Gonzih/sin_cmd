@@ -1,3 +1,4 @@
 - commands.each do |cmd|
   - if cmd && cmd[1]
-    %a{:href => cmd[1].url, :class => :killer}= cmd[1].command
+    .list_item
+      %a{:href => cmd[1].url, :class => :killer}= cmd[1].command

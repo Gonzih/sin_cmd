@@ -12,8 +12,10 @@ require 'command'
 root = File.dirname __FILE__
 set :views, File.join(root, 'views')
 
-before '/*' do
-	@commands = Command.list unless params[:cmd]
+['/', '/list/'].each do |path|
+  before path do
+    @commands = Command.list unless params[:cmd]
+  end
 end
 
 get '/' do
@@ -22,13 +24,16 @@ end
 
 post '/run/' do
 	Command.new params[:cmd]
-	#:ok
+
+	'ok'
 end
 
-get '/kill/:id' do
+post '/kill/:id' do
 	Command.kill params[:id]
+  
+  'ok'
 end
 
-get '/list/' do
+post '/list/' do
 	haml :list, :locals => { :commands => @commands }, :layout => false
 end

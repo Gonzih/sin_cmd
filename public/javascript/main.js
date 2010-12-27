@@ -1,30 +1,43 @@
 $(document).ready(function(){
   $('#main_form').submit(function(){
-    $.post(
-      $(this).attr('action'),
-      $(this).serialize(),
-      function(response) {
+    $.ajax({
+      url: $(this).attr('action'),
+      data: $(this).serialize(),
+      type: 'post',
+      success: function(response) {
         if (response == 'ok') {
           load_list();
         }
       }
-    )
+    })
     return false;
   })
 
-  $('.killer').click(function(){
-    $.post(
-      $(this).attr('href'),
-      function(response) {
+  init_killers()
+});
+
+function load_list() {
+    $.ajax({
+        url: '/list/',
+        type: 'post',
+        success: function(data){
+            $('#list').html(data);
+            init_killers();
+        }
+    })
+}
+
+function init_killers() {
+    $('.killer').click(function(){
+    $.ajax({
+      url: $(this).attr('href'),
+      type: 'post',
+      success: function(response) {
         if (response == 'ok') {
           load_list();
         }
       }
-    )
+    })
     return false;
   });
-});
-
-function load_list() {
-  $('#list').load('/list/');
 }

@@ -1,6 +1,6 @@
 #cmd_form
-  %form{ :action => '/run/', :method => :post }
+  %form#main_form{ :action => '/run/', :method => :post }
     %input{ :name => :cmd }
-    %input{ :type => :submit, :value => :execute }
+    %input#main_form_submit{ :type => :submit, :value => :execute }
 #list
   =haml :list, :layout => false, :locals => { :commands => @commands }
