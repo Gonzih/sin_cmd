@@ -1,7 +1,6 @@
 require 'digest/md5'
 
 class Command
-	@@prefix = 'screen -d -m -S '
 	@@commands = {}
 	attr_reader :id, :command
 
