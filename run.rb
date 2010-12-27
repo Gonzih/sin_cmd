@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 require 'rubygems'
+require 'bundler'
 require 'sinatra'
-require 'haml'
+Bundler.require :default
 
 root = File.dirname __FILE__
 set :root, root
@@ -19,6 +20,13 @@ set :views, File.join(root, 'views')
     @commands = Command.list unless params[:cmd]
   end
 end
+
+before '/*' do
+  use Rack::Auth::Basic do |username, password|
+    username == 'test' && password == 'test'
+  end
+end
+
 
 get '/' do
 	haml :index
