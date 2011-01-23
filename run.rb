@@ -8,7 +8,10 @@ root = File.dirname __FILE__
 set :root, root
 set :public, File.join(root, 'public')
 $: << File.join(root, 'lib')
+$: << File.join(root, 'helpers')
 require 'command'
+require 'library'
+require 'application_helpers'
 
 set :port, 4444
 
@@ -40,10 +43,20 @@ end
 
 post '/kill/:id/?' do
   Command.kill params[:id]
-  
+
   'ok'
 end
 
 post '/list/?' do
   haml :list, :locals => { :commands => @commands }, :layout => false
+end
+
+get '/library/?' do
+  @files = Library.search params[:extensions]
+
+  haml :files_library
+end
+
+get '/stylesheets/main.css' do
+  sass :main
 end

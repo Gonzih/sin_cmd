@@ -15,6 +15,16 @@ $(document).ready(function(){
   })
 
   init_killers()
+  $('.dir').click(function(){
+    $(this).next().next('.level').slideToggle('fast');
+    return false;
+  });
+  $('.file').click(function(){
+    var file = $(this).attr('href');
+    var href = '/run/?cmd=mplayer -fs ' + file;
+    $.post(href, function(){ document.location.reload() })
+    return false;
+  });
 });
 
 function load_list() {

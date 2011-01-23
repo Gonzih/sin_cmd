@@ -1,7 +1,10 @@
-require 'yaml'
-
 class Library
   @@command = 'locate'
+  @@cache = {}
+
+  def self.search types
+    @@cache[types] ||= get_hash get_array types
+  end
 
   def self.get_array types
     raise 'Empty types' if types.length == 0
