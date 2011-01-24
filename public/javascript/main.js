@@ -59,7 +59,7 @@ function init_library() {
 
   $('.file').click(function(){
     var file = $(this).attr('href');
-    var href = '/run/?cmd=mplayer -fs ' + file;
+    var href = "/run/?cmd=mplayer -fs '" + file + "'";
     $.post(href, load_list)
     return false;
   });

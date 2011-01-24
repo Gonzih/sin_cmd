@@ -12,7 +12,7 @@ class Library
     out = ''
     types.each { |s| s.gsub!(' ', ''); out += `#{@@command} #{s}` }
 
-    out.split "\n"
+    out.split("\n").sort
   end
 
   def self.get_hash array

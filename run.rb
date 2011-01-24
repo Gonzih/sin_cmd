@@ -13,7 +13,7 @@ require 'command'
 require 'library'
 require 'application_helpers'
 
-set :port, 4445
+set :port, 4444
 
 root = File.dirname __FILE__
 set :views, File.join(root, 'views')
