@@ -8,8 +8,8 @@ class Command
     @command = command
     @id = hash
     @@commands[@id] = self
-    @pid = fork { exec @command }
     p "Running '#{@command}"
+    @pid = fork { exec @command }
 
     self
   end

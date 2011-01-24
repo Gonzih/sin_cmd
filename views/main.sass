@@ -1,8 +1,12 @@
+$icon_size: 16px
+$run_icon_size: 26px
+
 *
 
 body
   height: 95%
   width: 99%
+  background: #ffffff
 
 a
   color: black
@@ -10,6 +14,13 @@ a
   font-weight: bold
 
 #cmd_form
+  float: left
+  img
+    width: $run_icon_size
+    height: $run_icon_size
+    float: left
+
+#main_form
   float: left
 
 #list
@@ -47,3 +58,9 @@ a
   clear: both
   width: 100%
   height: 100%
+  a
+    img
+      width: $icon_size
+      height: $icon_size
+      border: none
+      margin-right: 5px

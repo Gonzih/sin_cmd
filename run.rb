@@ -52,7 +52,7 @@ post '/list/?' do
 end
 
 get '/library/?' do
-  params[:extensions] = '*.mp4' if params[:extensions].length == 0
+  params[:extensions] = '*.mp4,*.avi,*.mkv' if params[:extensions].length == 0
   @files = Library.search params[:extensions]
 
   haml :files_library, :layout => false
