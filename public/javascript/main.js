@@ -15,16 +15,7 @@ $(document).ready(function(){
   })
 
   init_killers()
-  $('.dir').click(function(){
-    $(this).next().next('.level').slideToggle('fast');
-    return false;
-  });
-  $('.file').click(function(){
-    var file = $(this).attr('href');
-    var href = '/run/?cmd=mplayer -fs ' + file;
-    $.post(href, function(){ document.location.reload() })
-    return false;
-  });
+  load_library();
 });
 
 function load_list() {
@@ -58,4 +49,23 @@ function init_killers() {
 
 function loader() {
     $('#list').html('<center><img src="/images/loader.gif" /></center>');
+}
+
+function init_library() {
+  $('.dir').click(function(){
+    $(this).next().next('.level').slideToggle('fast');
+    return false;
+  });
+
+  $('.file').click(function(){
+    var file = $(this).attr('href');
+    var href = '/run/?cmd=mplayer -fs ' + file;
+    $.post(href, load_list)
+    return false;
+  });
+}
+
+function load_library(extensions) {
+  if (!extensions) extensions = ''
+  $('#files_library').load('/library/?extensions=' + extensions, init_library);
 }

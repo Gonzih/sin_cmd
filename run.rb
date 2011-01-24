@@ -13,7 +13,7 @@ require 'command'
 require 'library'
 require 'application_helpers'
 
-set :port, 4444
+set :port, 4445
 
 root = File.dirname __FILE__
 set :views, File.join(root, 'views')
@@ -52,9 +52,10 @@ post '/list/?' do
 end
 
 get '/library/?' do
+  params[:extensions] = '*.mp4' if params[:extensions].length == 0
   @files = Library.search params[:extensions]
 
-  haml :files_library
+  haml :files_library, :layout => false
 end
 
 get '/stylesheets/main.css' do
