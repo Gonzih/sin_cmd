@@ -24,9 +24,11 @@ set :views, File.join(root, 'views')
   end
 end
 
-before '/*' do
-  use Rack::Auth::Basic do |username, password|
-    username == 'test' && password == 'test'
+['/', '/list/?', '/library/?'].each do |path|
+  before path do
+    use Rack::Auth::Basic do |username, password|
+      username == 'test' && password == 'test'
+    end
   end
 end
 
